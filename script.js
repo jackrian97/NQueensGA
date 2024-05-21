@@ -7,3 +7,17 @@ function initializePopulation(size, n){
   }
   return population; 
 }
+
+function calculateFitness(individual){
+  const n = individual.length;
+  let collisions = 0;// number of queens that are attacking each other
+  for(let i=0; i<n; i++){
+    for(let j=i+1; j<n; j++){
+      //check if two queens are attacking in the same row or diagonally
+      if(individual[i] == individual[j] || Math.abs(individual[i] - individual[j]) == Math.abs(i - j)){
+        collisions++;
+      }
+    }
+  }
+  return collisions;
+}

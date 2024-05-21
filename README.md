@@ -3,6 +3,7 @@ In this project we implement a solution to the N queens problem in a table of va
 
 # table of contents
 - [initial population](#initial-population)
+- [fitness function](#fitness-function)
 
 # initial population
 The initial population is generated randomly, the size of the population is defined by the user, the population is a list of lists, where each list represents a possible solution to the problem, the size of the list is the number of queens in the problem, and the value of each element in the list is the column where the queen is located, for example, the list [1, 3, 0, 2] represents a solution to the problem with 4 queens, where the queen 0 is in the column 1, the queen 1 is in the column 3, the queen 2 is in the column 0 and the queen 3 is in the column 2.
@@ -16,5 +17,23 @@ function initializePopulation(size, n){
     population.push(individual);
   }
   return population; 
+}
+```
+# fitness function
+The fitness function is the function that evaluates how good is a solution to the problem, in this case, the fitness function is the number of pairs of queens that are attacking (collision) each other, the function validate attack in rows and diagonals. if not conflict return 0, else return n collisions.
+
+```javascript
+function calculateFitness(individual){
+  const n = individual.length;
+  let collisions = 0;// number of queens that are attacking each other
+  for(let i=0; i<n; i++){
+    for(let j=i+1; j<n; j++){
+      //check if two queens are attacking in the same row or diagonally
+      if(individual[i] == individual[j] || Math.abs(individual[i] - individual[j]) == Math.abs(i - j)){
+        collisions++;
+      }
+    }
+  }
+  return collisions;
 }
 ```
