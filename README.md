@@ -4,6 +4,7 @@ In this project we implement a solution to the N queens problem in a table of va
 # table of contents
 - [initial population](#initial-population)
 - [fitness function](#fitness-function)
+- [selection](#selection)
 
 # initial population
 The initial population is generated randomly, the size of the population is defined by the user, the population is a list of lists, where each list represents a possible solution to the problem, the size of the list is the number of queens in the problem, and the value of each element in the list is the column where the queen is located, for example, the list [1, 3, 0, 2] represents a solution to the problem with 4 queens, where the queen 0 is in the column 1, the queen 1 is in the column 3, the queen 2 is in the column 0 and the queen 3 is in the column 2.
@@ -19,6 +20,7 @@ function initializePopulation(size, n){
   return population; 
 }
 ```
+
 # fitness function
 The fitness function is the function that evaluates how good is a solution to the problem, in this case, the fitness function is the number of pairs of queens that are attacking (collision) each other, the function validate attack in rows and diagonals. if not conflict return 0, else return n collisions.
 
@@ -37,3 +39,39 @@ function calculateFitness(individual){
   return collisions;
 }
 ```
+
+# selection
+The selection process is the process of selecting the best individuals in the population to be parents of the next generation, in this project we use the rank selection method, the rank selection method is a selection method that selects the best individuals in the population based on their fitness, the best individuals have a higher probability of being selected as parents, in addition, selected individuals are eliminated from the ranking so that they cannot participate in the selection again and in this way the selection is more diverse and robust.
+
+```javascript
+function rankSelection(population, fitness) {
+  //assignment of rank to each individual according to their fitness
+  const ranked = population.map((individual, index) => ({ ind: individual, rank: index + 1 }))
+                           .sort((a, b) => fitness(a.ind) - fitness(b.ind));
+  //calculates the total sum of ranks of individuals ranked
+  const totalRank = ranked.reduce((acc, obj) => acc + obj.rank, 0);
+  //randomly selects an individual based on their rank
+  const pick = Math.random() * totalRank;
+  //selects the individual whose cumulative rank is greater than or equal to the random number
+  let cumulativeRank = 0;
+  for (const obj of ranked) {
+    cumulativeRank += obj.rank;
+    if (cumulativeRank >= pick) {
+      return obj.ind;//returns the selected individual
+    }
+  }
+}
+
+function selection(population, fitness) {
+  const selected = [];// individuals selected for the next generation
+  let tempPopulation = [...population]; // copy of the population
+  for (let i = 0; i < population.length / 2; i++) {
+    const selectedIndividual = rankSelection(tempPopulation, fitness);
+    selected.push(selectedIndividual);
+    // remove the selected individual from the temporary population
+    tempPopulation = tempPopulation.filter(ind => ind !== selectedIndividual);
+  }
+  return selected;// returns the selected individuals for the next generation
+}
+```
+
