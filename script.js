@@ -51,3 +51,65 @@ function selection(population, fitness) {
   }
   return selected;// returns the selected individuals for the next generation
 }
+
+function crossover(parent1, parent2) {
+  const n = parent1.length;
+  const crossoverPoint = Math.floor(Math.random() * n);
+  //creates two children by combining the genes of the parents
+  const child1 = parent1.slice(0, crossoverPoint).concat(parent2.slice(crossoverPoint));
+  const child2 = parent2.slice(0, crossoverPoint).concat(parent1.slice(crossoverPoint));
+  
+  return [child1, child2];
+}
+
+function mutation (individual, mutationRate) {
+  const n = individual.length;
+  //mutates the individual by changing the value of a gene with a probability of mutationRate
+  return individual.map((gen, index) => Math.random() < mutationRate ? Math.floor(Math.random() * n) : gen);
+}
+
+
+function reproduce(selected, populationSize, mutationRate) {
+  const newPopulation = [];
+  
+  while (newPopulation.length < populationSize) {
+    const parent1 = selected[Math.floor(Math.random() * selected.length)];
+    const parent2 = selected[Math.floor(Math.random() * selected.length)];
+    //crossover of the parents to produce children
+    const [child1, child2] = crossover(parent1, parent2);
+    //mutation of the children
+    mutation(child1, mutationRate);
+    mutation(child2, mutationRate);
+
+    newPopulation.push(child1);
+    if (newPopulation.length < populationSize) {
+      newPopulation.push(child2);
+    }
+  }
+  
+  return newPopulation;
+}
+
+function replacement(population, newPopulation, fitness, elitismCount) {
+  const combined = population.concat(newPopulation);//combines the old and new population
+  combined.sort((a, b) => fitness(a) - fitness(b));//sorts the combined population based on their fitness
+  //returns the best individuals from the combined population
+  return combined.slice(0, population.length - elitismCount).concat(combined.slice(-elitismCount));
+}
+
+// Parameters
+const populationSize = 10;
+const nQueens = 4;
+const generations = 100;
+const elitismCount = 2;
+const mutationRate = 0.1;
+//algorithm generation works
+let population = initializePopulation(populationSize, nQueens);
+console.log("Población inicial:", population.map(ind => ({ individual: ind, fitness: calculateFitness(ind) })));
+for (let generation = 0; generation < generations; generation++) {
+  const selected = selection(population, calculateFitness);
+  const newPopulation = reproduce(selected, populationSize, mutationRate);
+  population = replacement(population, newPopulation, calculateFitness, elitismCount);
+}
+
+console.log("Población final:", population.map(ind => ({ individual: ind, fitness: calculateFitness(ind) })));
