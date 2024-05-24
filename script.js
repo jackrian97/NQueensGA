@@ -1,6 +1,6 @@
 function initializePopulation(size, n){
   let population = [];// group of possible solutions
-  for(let i=0; i<size; i++){
+  for(let i = 0; i < size; i++){
     //generate to array of random numbers between 0 to n with length n
     let individual = Array.from({length: n}, () => Math.floor(Math.random() * n));
     population.push(individual);
@@ -11,8 +11,8 @@ function initializePopulation(size, n){
 function calculateFitness(individual){
   const n = individual.length;
   let collisions = 0;// number of queens that are attacking each other
-  for(let i=0; i<n; i++){
-    for(let j=i+1; j<n; j++){
+  for(let i = 0; i < n; i++){
+    for(let j = i + 1; j < n; j++){
       //check if two queens are attacking in the same row or diagonally
       if(individual[i] == individual[j] || Math.abs(individual[i] - individual[j]) == Math.abs(i - j)){
         collisions++;
@@ -38,18 +38,23 @@ function rankSelection(population, fitness) {
       return obj.ind;//returns the selected individual
     }
   }
+  //Defensive programming: return the last individual if the loop doesn't return any
+  return ranked[ranked.length - 1].ind;
 }
 
 function selection(population, fitness) {
-  const selected = [];// individuals selected for the next generation
-  let tempPopulation = [...population]; // copy of the population
-  for (let i = 0; i < population.length / 2; i++) {
-    const selectedIndividual = rankSelection(tempPopulation, fitness);
+  const selected = [];// Selected individuals
+  const populationCopy = [...population];// Make a copy to avoid modifying the original population
+  while (selected.length < population.length / 2) {// Select half of the population
+    const selectedIndividual = rankSelection(populationCopy, fitness);
     selected.push(selectedIndividual);
-    // remove the selected individual from the temporary population
-    tempPopulation = tempPopulation.filter(ind => ind !== selectedIndividual);
+    // Remove the selected individual from the population
+    const index = populationCopy.findIndex(ind => ind === selectedIndividual);
+    if (index !== -1) {
+      populationCopy.splice(index, 1);
+    }
   }
-  return selected;// returns the selected individuals for the next generation
+  return selected;
 }
 
 function crossover(parent1, parent2) {
@@ -67,7 +72,6 @@ function mutation (individual, mutationRate) {
   //mutates the individual by changing the value of a gene with a probability of mutationRate
   return individual.map((gen, index) => Math.random() < mutationRate ? Math.floor(Math.random() * n) : gen);
 }
-
 
 function reproduce(selected, populationSize, mutationRate) {
   const newPopulation = [];
@@ -97,19 +101,56 @@ function replacement(population, newPopulation, fitness, elitismCount) {
   return combined.slice(0, population.length - elitismCount).concat(combined.slice(-elitismCount));
 }
 
-// Parameters
-const populationSize = 10;
-const nQueens = 4;
-const generations = 100;
-const elitismCount = 2;
-const mutationRate = 0.1;
-//algorithm generation works
-let population = initializePopulation(populationSize, nQueens);
-console.log("Población inicial:", population.map(ind => ({ individual: ind, fitness: calculateFitness(ind) })));
-for (let generation = 0; generation < generations; generation++) {
-  const selected = selection(population, calculateFitness);
-  const newPopulation = reproduce(selected, populationSize, mutationRate);
-  population = replacement(population, newPopulation, calculateFitness, elitismCount);
+
+function geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mutationRate) {
+  let population = initializePopulation(populationSize, nQueens);
+
+  for (let generation = 0; generation < generations; generation++) {
+    population = population.sort((a, b) => calculateFitness(a) - calculateFitness(b));
+    
+    // Check if the best individual is a solution
+    const bestIndividual = population[0];
+    const bestFitness = calculateFitness(bestIndividual);
+    
+    if (bestFitness === 0) {
+      return { solution: bestIndividual, fitness: bestFitness, generation };
+    }
+
+    const selected = selection(population, calculateFitness);
+
+    // Perform crossover and mutation
+    const newPopulation = [];
+    while (newPopulation.length < populationSize - elitismCount) {
+      const parent1 = selected[Math.floor(Math.random() * selected.length)];
+      const parent2 = selected[Math.floor(Math.random() * selected.length)];
+      const [child1, child2] = crossover(parent1, parent2);
+      newPopulation.push(mutation(child1, mutationRate));
+      if (newPopulation.length < populationSize - elitismCount) {
+        newPopulation.push(mutation(child2, mutationRate));
+      }
+    }
+
+    // Add elite individuals to the new population
+    newPopulation.push(...population.slice(0, elitismCount));
+
+    population = newPopulation;
+  }
+
+  // If no solution was found within the given generations, return the best found solution
+  population = population.sort((a, b) => calculateFitness(a) - calculateFitness(b));
+  const bestIndividual = population[0];
+  const bestFitness = calculateFitness(bestIndividual);
+  return { solution: bestIndividual, fitness: bestFitness, generation: generations };
 }
 
-console.log("Población final:", population.map(ind => ({ individual: ind, fitness: calculateFitness(ind) })));
+// Example usage:
+const populationSize = 50;// number of individuals in the population 
+const nQueens = 8;// number of queens in the problem
+const generations = 1000;// number of generations to run the algorithm
+const elitismCount = 2;// number of elite individuals to be preserved in each generation
+const mutationRate = 0.1; // probability of mutation for each gene
+
+const result = geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mutationRate);
+console.log("Solución encontrada:", result.solution);
+console.log("Fitness de la solución:", result.fitness);
+console.log("Generación en la que se encontró la solución:", result.generation);
