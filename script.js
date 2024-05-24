@@ -103,28 +103,31 @@ function replacement(population, newPopulation, fitness, elitismCount) {
 
 
 function geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mutationRate) {
+  //initialize the population
   let population = initializePopulation(populationSize, nQueens);
-
   for (let generation = 0; generation < generations; generation++) {
+    //sort the population based on their fitness
     population = population.sort((a, b) => calculateFitness(a) - calculateFitness(b));
     
     // Check if the best individual is a solution
     const bestIndividual = population[0];
     const bestFitness = calculateFitness(bestIndividual);
-    
+    // If the best individual is a solution, return it
     if (bestFitness === 0) {
       return { solution: bestIndividual, fitness: bestFitness, generation };
     }
-
+    // Select the best individuals from the population
     const selected = selection(population, calculateFitness);
 
     // Perform crossover and mutation
     const newPopulation = [];
+    // Reproduce the selected individuals to create a new population
     while (newPopulation.length < populationSize - elitismCount) {
       const parent1 = selected[Math.floor(Math.random() * selected.length)];
       const parent2 = selected[Math.floor(Math.random() * selected.length)];
       const [child1, child2] = crossover(parent1, parent2);
       newPopulation.push(mutation(child1, mutationRate));
+      // Add the second child only if the population size allows it
       if (newPopulation.length < populationSize - elitismCount) {
         newPopulation.push(mutation(child2, mutationRate));
       }
