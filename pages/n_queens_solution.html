@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmo Genético</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Algoritmo genético</h1>
+    <form id="ga-form">
+        <label for="populationSize">Tamaño de la Población:</label>
+        <input type="number" id="populationSize" name="populationSize" min="10" required>
+        <label for="nQueens">Cantidad de Reinas:</label>
+        <input type="number" id="nQueens" name="nQueens" min="4" required>
+        <label for="generations">Cantidad de Generaciones:</label>
+        <input type="number" id="generations" name="generations" min="10" required>
+        <label for="elitismCount">Cantidad de Elites:</label>
+        <input type="number" id="elitismCount" name="elitismCount" min="2" required>
+        <label for="mutationRate">Probabilidad de Mutación:</label>
+        <input type="number" id="mutationRate" name="mutationRate" step="0.1" min="0" max="1" required>
+        <button type="button" onclick="solveNQueens()">Resolver</button>
+    </form>
+
+    <div id="results">
+        <div id="solution"></div>
+        <div id="details"></div>
+    </div>
+
+    <script src="/js/script.js" type="module"></script>
+</body>
+</html>
