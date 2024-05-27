@@ -102,7 +102,7 @@ function replacement(population, newPopulation, fitness, elitismCount) {
 }
 
 
-function geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mutationRate) {
+export function geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mutationRate) {
   //initialize the population
   let startTime = performance.now();//start time of the algorithm
   let population = initializePopulation(populationSize, nQueens);
@@ -147,15 +147,3 @@ function geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mu
   let endTime = performance.now();//end time of the algorithm
   return { solution: bestIndividual, fitness: bestFitness, generation: generations, time: endTime - startTime};
 }
-
-const populationSize = 50;// number of individuals in the population 
-const nQueens = 8;// number of queens in the problem
-const generations = 1000;// number of generations to run the algorithm
-const elitismCount = 2;// number of elite individuals to be preserved in each generation
-const mutationRate = 0.1; // probability of mutation for each gene
-
-const result = geneticAlgorithm(populationSize, nQueens, generations, elitismCount, mutationRate);
-console.log("Solución encontrada:", result.solution);
-console.log("Fitness de la solución:", result.fitness);
-console.log("Generación en la que se encontró la solución:", result.generation);
-console.log("Tiempo de ejecución:", result.time, "ms");
