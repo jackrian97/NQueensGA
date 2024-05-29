@@ -10,10 +10,12 @@ function createBoard(nQueens) {
 
 function displaySolution(solution, nQueens) {
     const board = createBoard(nQueens);
+    // Display queens on board where queenRow is the row of the queen in the column and col is the column
     solution.forEach((queenRow, col) => {
         for (let row = 0; row < nQueens; row++) {
             const cell = document.createElement('div');
             cell.classList.add('cell');
+            // alternate between white and black cells
             cell.classList.add((col + row) % 2 === 0 ? 'white' : 'black');
             if (row === queenRow) {
                 cell.textContent = '♛';
@@ -34,8 +36,6 @@ function displayDetails(result) {
         <p>Tiempo de ejecución: ${result.time.toFixed(2)} ms</p>
     `;
 }
-
-
 
 function solveNQueens() {
     const populationSize = parseInt(document.getElementById('populationSize').value);

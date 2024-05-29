@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algoritmo Genético</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
+    <header></header>
+    <script src = "../js/navbar.js"></script>
     <h1>Algoritmo genético</h1>
     <form id="ga-form">
         <label for="populationSize">Tamaño de la Población:</label>
-        <input type="number" id="populationSize" name="populationSize" min="10" required>
+        <input type="number" id="populationSize" name="populationSize" step="10" min="10" required>
         <label for="nQueens">Cantidad de Reinas:</label>
         <input type="number" id="nQueens" name="nQueens" min="4" required>
         <label for="generations">Cantidad de Generaciones:</label>
-        <input type="number" id="generations" name="generations" min="10" required>
+        <input type="number" id="generations" name="generations" step="10" min="10" required>
         <label for="elitismCount">Cantidad de Elites:</label>
         <input type="number" id="elitismCount" name="elitismCount" min="2" required>
         <label for="mutationRate">Probabilidad de Mutación:</label>

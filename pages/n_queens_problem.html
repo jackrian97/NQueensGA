@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N Reinas</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <!--for colors en page-->
+    <style>
+        .vector {
+            color: red;
+        }
+        .index {
+            color: green;
+        }
+        .ascendent {
+            color: orange;
+        }
+        .descendent {
+            color: blue;
+        }
+    </style>
+    <!--for de form math-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header></header>
+    <script src = "../js/navbar.js"></script>
+    <h1>Problema de las N-Reinas</h1>
+    <main>
+        <section>
+            <h2 class="toggle">Introducción al Problema</h2>
+            <div class="content">
+                <p>Fue propuesto por el ajedrecista alemán Max Bezzel en 1848 y ha supuesto un reto para muchos ajedrecistas y matemáticos durante más de 150 años. En el ajedrez la 👑 amenaza a aquellas piezas que se encuentren en su misma fila, columna o diagonal.</p>
+                <div class="image-container">
+                    <img src="../img/queens_problem/alone_queen.png" alt="Queen alone">
+                </div>
+                <p>El <strong>problema de las N-Reinas</strong> consiste en colocar N reinas en un tablero de ajedrez NxN de forma que ninguna reina pueda atacar a otra. Ya que las reinas pueden moverse en línea recta horizontal, vertical y diagonalmente, podemos concluir las siguientes restricciones:</p>
+                <ul>
+                    <li>Solo puede estar una sola reina por fila y por columna.</li>
+                    <li>No más de una reina en cualquier diagonal (izquierda y derecha).</li>
+                </ul>
+                <div class="image-container">
+                    <img src="../img/queens_problem/move_queen.png" alt="Queen moves">
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="toggle">Solusión al problema</h2>
+            <div>
+                <p>
+                    Para su solución, es conveniente el uso de vectores en donde cada un vector con N números enteros indicara las posiciones de las reinas en el tablero de modo que el primer número se correspondería con la posición de la primera reina dentro de la primera fila, es decir, la columna en la que estaría la reina dentro de la primera fila. El segundo número se correspondería con la posición de la segunda reina dentro de la segunda fila y así continuaríamos hasta las N reinas en el tablero NxN.
+                </p>
+                <p>Ejemplo de 4 reinas para un tablero 4x4:</p>
+                <p>Por ejemplo, en un problema de 4 reinas, un <span class="vector">vector</span> podría ser <span class="index">[1, 3, 0, 2]</span>, donde el valor del <span class="vector">vector</span> en la posición <span class="index">[0] es (1)</span> indica que hay una reina en la fila 0, columna 1.</p>
+                <div class="image-container">
+                    <img src="../img/queens_problem/verticalHorizontal.png" alt="verticalHorizontal">
+                </div>
+                <p><strong>Verificaciones de ataques</strong></p>
+                <ul>
+                    <li>
+                        Verticales y horizontales
+                        <p>
+                            Por definicion las filas se verifican por defecto, al tener que asignarles un valor a la variable. Es decir, por la forma del modelo, no pueden haber dos reinas en la misma fila, por lo que esa restricción se omite. En cuanto a las columnas esto se verifica observando los valores de las variables del arreglo. Si estos son distinto, entonces se cumple con la restricción, si son iguales, no.
+                        </p>
+                        <p>Por ejemplo en la <span class="index">figura 1</span> el arreglo seria <span class="vector">[</span>1, 3, 0, 2<span class="vector">]</span> y en la <span class="vector">figura 2</span> seria <span class="vector">[1</span>, 3, 0,<span class="vector"> 1]</span> vemos que el uno se repite en el arreglo por ende se observa un ataque.</p>
+                        <div class="image-container">
+                            <img src="../img/queens_problem/attacks_1PNG.png" alt="verticalHorizontal">
+                        </div>
+                    </li>
+                    <li>
+                        Diagoles ascendentes y decendentes
+                        <p>
+                            Estas diagonales se dividen en dos ascendentes <span class="ascendent">(+)</span> y decendentes <span class="descendent">(-)</span> se obtienen de la suma o resta de sus indices <span class="vector">(i j)</span> tal y como se muestra enseguida.
+                        </p>
+                        <div class="image-container">
+                            <img src="../img/queens_problem/diagonals_plus.PNG" alt="verticalHorizontal">
+                        </div>
+                        <p>
+                            podemos cuncluir que si la resta de los valores del arreglo son iguales a la resta de sus indices entonces estamos ante 2 reinas en la misa diagonal sea descendente o ascendente. 
+                        </p>
+                        <p>
+                            \[
+                            | \text{vector}[i] - \text{vector}[j] | = | i - j |
+                            \]
+                        </p>
+
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <h2 class="toggle">Dato curioso</h2>
+            <div>
+                <div class="image-container">
+                    <img src="../img/queens_problem/date.png" alt="Queen moves">
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../js/toggle.js"></script>
+</body>
+</html>
