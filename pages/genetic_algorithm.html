@@ -8,8 +8,204 @@
     <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
+    <h1>Algoritmo Genético</h1>
     <header></header>
     <script src = "../js/navbar.js"></script>
-    <h1>Algoritmo Genético</h1>
+    <main>
+        <section>
+            <h2 class="toggle">Origen</h2>
+            <div class="content">
+                <p>
+                    1975 aparece la publicación de Holland llamada Adaptación en Sistemas Naturales y Artificiales, este libro fue el primero en presentar sistemática y rigurosamente el concepto de <strong>sistemas digitales adaptativos</strong> utilizando las operaciones de <strong>mutación, la selección y el cruzamiento,</strong> y simulando el proceso de la evolución biológica como estrategia para resolver problemas. asi pues se estableció el potencial de los Algoritmos Genéticos en el campo de computación evolutiva demostrando que podían desenvolverse bien en una gran variedad de problemas como predicción en la bolsa y la planificación de la cartera de valores, ingeniería aeroespacial, diseño de microchips, bioquímica y biología molecular, diseño de horarios y líneas de montaje.
+                </p>
+                <div class="image-container">
+                    <img src="../img/genetic_algorithm/nasa.png" alt="nasa">
+                </div>
+                <p>
+                    Basándose en la idea de que los más aptos sobreviven mejor a las situaciones del entorno, es posible crear simulaciones en las que los individuos están obligados a sobrevivir en un ambiente hostil, y solo aquellos con las condiciones más adecuadas para ese entorno serán capaces de durar el tiempo suficiente para reproducirse (sea sexual o asexualmente) y dejar descendencia en la que sus caracteres positivos den más opciones a los nuevos individuos, que junto con la mutación, puede producir una paulatina adaptación al medio. Tras este proceso durante generaciones, los individuos que queden reflejarán en sus características una solución (cuasi) óptima al problema de la supervivencia en el entorno.
+                </p>
+            </div>
+        </section>
+        <section>
+            <h2 class="toggle">¿Qué es un Algoritmo Genético?</h2>
+            <div class="content">
+                <p>
+                    Un <strong>Algoritmo Genético (AG) es </strong>una técnica de resolución de problemas que se inspira en la evolución biológica como estrategia para la resolución de problemas. Dado un problema específico a resolver, la entrada del AG es un conjunto de soluciones potenciales a ese problema, codificadas de alguna manera, y una métrica llamada <strong>función de aptitud, o</strong> fitness, que permite evaluar cuantitativamente la bondad de cada solución candidata, la mayoría no funcionarán en absoluto. Sin embargo, por puro azar, unas pocas pueden ser prometedoras a las cuales se les permite reproducirse.
+                </p>
+                <div class="image-container">
+                    <img src="../img/genetic_algorithm/sex.PNG" alt="reproducirse">
+                </div>
+                <p>
+                    Se realizan múltiples copias de ellas, pero estas copias no son perfectas, sino que se les introducen algunos cambios aleatorios durante el proceso de copia, a modo de  <strong>cruzamiento y mutaciones</strong> que pueden sufrir los descendientes de una población. Luego, esta descendencia digital prosigue con la siguiente generación, formando un nuevo conjunto de soluciones candidatas y son de nuevo sometidas a una ronda de <strong>evaluación</strong> de aptitud. Las candidatas que han empeorado o no han mejorado con las mutaciones son eliminadas de nuevo; pero, de nuevo, por puro azar, las variaciones aleatorias introducidas en la población pueden haber mejorado a algunos individuos, convirtiéndolos en mejores soluciones del problema, más completas o más eficientes. El proceso se repite las iteraciones que haga falta, hasta que obtengamos soluciones suficientemente buenas para nuestros propósitos. Puede mejorarse el proceso de evolución permitiendo que las características individuales de las soluciones se combinen por medio de operaciones de <strong> cruzamiento </strong>para generar nuevos descendientes (simulando lo que sería la reproducción sexual).
+                </p>
+                <div class="image-container">
+                    <img src="../img/genetic_algorithm/evolution.PNG" alt="Queen moves">
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="toggle">¿Cómo se construye un AG?</h2>
+            <div class="content">
+                <section>
+                    <h2 class="toggle">○ Métodos de representación</h2>
+                    <div class="content">
+                        <p>
+                            Como hemos visto, la definición de AG requiere de una función para codificar las soluciones potenciales del problema, debemos disponer de un mecanismo para codificar](Abstraer el problema) un individuo como un genotipo. Un enfoque común es codificar las soluciones como cadenas binarias: secuencias de 1's y 0's, donde el dígito de cada posición representa la presencia/ausencia de algún aspecto de la solución. Otro método similar consiste en codificar las soluciones como vectores/cadenas de números enteros o decimales donde cada posición, de nuevo, representa algún aspecto particular de la solución. Esta última representación ofrece mayor precisión y complejidad que la representación binaria, y a menudo está intuitivamente más cerca del espacio de soluciones del problema, pero también hace más compleja la búsqueda de soluciones óptimas en el paisaje de optimización. Una vez elegida una representación, hemos de tener en mente como los genotipos (codificación) serán evaluados y qué operadores genéticos hay que utilizar.
+                        </p>
+                        <div class="image-container">
+                            <img src="../img/genetic_algorithm/gen.png" alt="Queen moves">
+                        </div>
+                    </div>
+                </section>  
+                <section>
+                    <h2 class="toggle">○ Métodos de selección</h2>
+                    <div class="content">
+                        <p>
+                            Un algoritmo genético puede utilizar muchas técnicas diferentes para seleccionar a los individuos que deben copiarse hacia la siguiente generación. Algunas de las más habituales son:
+                        </p>
+                        <ul>
+                            <li>
+                                <p><strong>Selección elitista: </strong>se garantiza la selección de los miembros más aptos de cada generación (la mayoría de los AGs no utilizan elitismo puro, sino una forma modificada por la que el individuo mejor, o algunos de los mejores, son copiados hacia la siguiente generación en caso de que no surja nada mejor).</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección proporcional a la aptitud: </strong>los individuos más aptos tienen más probabilidad de ser seleccionados, pero no la certeza.</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección por rueda de ruleta: </strong>una forma de selección proporcional a la aptitud en la que la probabilidad de que un individuo sea seleccionado es proporcional a la diferencia entre su aptitud y la de sus competidores.</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección escalada: </strong>al incrementarse la aptitud media de la población, la fuerza de la presión selectiva también aumenta y la función de aptitud se hace más discriminadora. Este método puede ser útil para seleccionar para valores mayores de, cuando todos los individuos tengan una aptitud relativamente alta y sólo les distingan pequeñas diferencias en la aptitud.</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección por torneo: </strong>se eligen subgrupos de individuos de la población, y los miembros de cada subgrupo compiten entre ellos. Sólo se elige a un individuo de cada subgrupo para la reproducción.</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección por rango: </strong>a cada individuo de la población se le asigna un rango numérico basado en su aptitud, y la selección se basa en este ranking, en lugar de las diferencias absolutas en aptitud. La ventaja de este método es que puede evitar que individuos muy aptos ganen dominancia al principio a expensas de los menos aptos, lo que reduciría la diversidad genética de la población y podría obstaculizar la búsqueda de una solución aceptable.</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección generacional: </strong>la descendencia de los individuos seleccionados en cada generación se convierte en toda la siguiente generación. No se conservan individuos entre las generaciones.</p>
+                            </li>
+                            <li>
+                                <p><strong>Selección jerárquica: </strong>los individuos atraviesan múltiples rondas de selección en cada generación. Las evaluaciones de los primeros niveles son más rápidas y menos discriminatorias, mientras que los que sobreviven hasta niveles más altos son evaluados más rigurosamente. La ventaja de este método es que reduce el tiempo total de cálculo al utilizar una evaluación más rápida y menos selectiva para eliminar a la mayoría de los individuos que se muestran poco o nada prometedores, y sometiendo a una evaluación de aptitud más rigurosa y computacionalmente más costosa solo a los que sobreviven a esta prueba inicial.</p>
+                            </li>
+                        </ul>
+                        <p>
+                            Debemos de garantizar que los mejores individuos tienen una mayor posibilidad de ser padres (reproducirse) frente a los individuos menos buenos. Debemos de ser cuidadosos para dar una oportunidad de reproducirse a los individuos menos buenos. Éstos pueden incluir material genético útil en el proceso de reproducción. Esta idea nos define la presión selectiva que determina en qué grado la reproducción está dirigida por los mejores individuos.
+                        </p>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="toggle">○ Métodos de reproducción</h2>
+                    <div class="content">
+                        <p>
+                            Una vez que la selección ha elegido a los individuos aptos, estos deben mezclarse con el objetivo de conseguir nuevas soluciones que presenten buenas características de combinaciones de la generación anterior (reproducción sexual).
+                        </p>
+                        <p>
+                            El método más habitual se basa en lo que se llama <strong>cruzamiento</strong>, y consiste en seleccionar a dos individuos para que intercambien segmentos de su código genético, produciendo una <strong>descendencia</strong> artificial cuyos individuos son combinaciones de sus padres. Este proceso pretende simular el proceso análogo de la recombinación que se da en los cromosomas durante la reproducción sexual. Las formas comunes de cruzamiento incluyen:
+                        </p>
+                        <ul>
+                            <li>
+                                <p><strong>Cruzamiento de un punto: </strong>En el que se establece un punto de intercambio en un lugar aleatorio del genoma de los dos individuos, y uno de los individuos contribuye todo su código anterior a ese punto y el otro individuo contribuye todo su código a partir de ese punto para producir una descendencia.</p>
+                                <div class="image-container">
+                                    <img src="../img/genetic_algorithm/cruce.PNG" alt="Queen moves">
+                                </div>
+                            </li>
+                            <li>
+                                <p><strong>Cruzamiento en dos puntos: </strong>En el que se intercambian los genes que aparecen en el intervalo de genes delimitados por dos puntos</p>
+                                <div class="image-container">
+                                    <img src="../img/genetic_algorithm/cruce2.PNG" alt="Queen moves">
+                                </div>
+                            </li>
+                            <li>
+                                <p><strong>Cruzamiento uniforme: </strong>En el que el valor de una posición dada en el genoma de la descendencia corresponde al valor en esa posición del genoma de uno de los padres o al valor en esa posición del genoma del otro padre, elegido con un 50% de probabilidad.</p>
+                                <div class="image-container">
+                                    <img src="../img/genetic_algorithm/cruce3.PNG" alt="Queen moves">
+                                </div>
+                            </li>
+                            <li>
+                                <p><strong>Mutacion: </strong>Una vez que la selección ha elegido a los individuos aptos, estos deben ser alterados aleatoriamente con la esperanza de mejorar su aptitud para la siguiente generación. La estrategia más sencilla es la que se conoce como <strong> mutación</strong> . Al igual que una mutación en los seres vivos cambia un gen por otro, una mutación en un algoritmo genético también causa pequeñas alteraciones en puntos concretos de la codificación del individuo, frecuentemente, mediante una distribución Gaussiana/normal</p>
+                                <div class="image-container">
+                                    <img src="../img/genetic_algorithm/modificacion.PNG" alt="Queen moves">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="toggle">○ Métodos de Reemplazamiento</h2>
+                    <div class="content">
+                        <p>Podemos utilizar métodos de reemplazamiento aleatorios, o determinísticos.  Por ejemplo podemos decidir no reemplazar al mejor cromosoma de la población: Elitismo(el uso del Elitismo es aconsejado en los modelos generacionales para no perder la mejor solución encontrada). Un modelo con alto grado de elitismo consiste en utilizar una población intermedia con todos los padres (N) y todos los descendientes y seleccionar los N mejores. Esto se combina con otras componentes con alto grado de diversidad.</p>
+                        <p>Cuando se considera un modelo estacionario (en el que se reemplazan solo uno o dos padres, frente al modelo generacional en el que se reemplaza la población completa), nos encontramos con diferentes propuestas.</p>
+                        <ul>
+                            <li>
+                                <p><strong>Reemplazar al peor de la población: </strong>Genera alta presión selectiva.</p>
+                            </li>
+                            <li>
+                                <p><strong>Torneo Restringido: </strong>Se reemplaza al mas parecido de entre w (w=3, …). Mantiene una cierta diversidad.</p>
+                            </li>
+                            <li>
+                                <p><strong>Peor entre semejantes: </strong>Se reemplaza el peor cromosoma del conjunto de los w (w=3, …) padres más parecidos al descendiente generado (seleccionados de toda la población). Busca equilibrio entre diversidad y presión selectiva.</p>
+                            </li>
+                            <li>
+                                <p><strong>Algoritmo de Crowding Determinístico: </strong>El hijo reemplaza a su padre más parecido. Mantiene diversidad.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="toggle">○ Desventajas y limitaciones</h2>
+                    <div class="content">
+                        <p>El hecho de que los Algoritmos Genéticos efectúen buenas búsquedas, se debe a que cada individuo no proporciona gran información si se examina por separado, sino que precisa de la información conjunta con el resto de individuos. A pesar de las bondades apuntadas para este tipo de algoritmos, debemos mencionar algunas de las limitaciones que presentan:</p>
+                        <ul>
+                            <li>
+                                <p>Como ocurre en muchos problemas de optimización, si tiene una alta complejidad entonces <strong>la función de evaluación puede resultar demasiado costosa </strong>en términos de tiempo y recursos.</p>
+                            </li>
+                            <li>
+                                <p>Hay casos en los que, dependiendo de los parámetros que se utilicen para la evaluación, <strong>el algoritmo puede no converger a una solución óptima, </strong>o bien terminar en una convergencia prematura con resultados no satisfactorios (es decir, devolviendo un óptimo local o incluso un punto arbitrario).</p>
+                            </li>
+                            <li>
+                                <p><strong>No poseen una buena escalabilidad </strong>on la complejidad. En sistemas en los que intervienen muchas variables, el espacio de búsqueda asociado puede crecer de manera exponencial debido, entre otras cosas, a las relaciones no lineales que puedan surgir entre los subconjuntos de variables.</p>
+                            </li>
+                            <li>
+                                <p>La mejor solución lo es solo en comparación a otras soluciones, por lo que no se tiene demasiado claro un criterio de cuándo detenerse, ya que no se cuenta con una solución específica que sirva de referencia.</p>
+                            </li>
+                            <li>
+                                <p>
+                                    No es recomendable su uso para problemas que buscan respuesta a problemas con soluciones simples como Sí/No o problemas de decisión, ya que el algoritmo difícilmente convergerá y el resultado será casi aleatorio.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    El diseño de la función de aptitud (fitness) y la selección de los criterios de mutación entre otros, necesitan de cierta pericia y <strong>conocimiento previo del problema </strong> para obtener buenos resultados.
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    La representación depende completamente del problema a resolver, por lo que difícilmente es automatizable para incluirlo en cadenas de procesos para solución de problemas complejos, planificación, deliberacíón, etc.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section>
+            <h2 class="toggle">Fuentes</h2>
+            <div class="content">
+                <ul>
+                    <li>
+                        <a href="https://es.wikipedia.org/wiki/Algoritmo_gen%C3%A9tico#Elitismo" target="_blank"><strong>informacion base de respaldo</strong></a>
+                    </li>
+                    <li>
+                        <a href="https://www.cs.us.es/~fsancho/Blog/posts/Algoritmos_Geneticos.md.html#formalizaci%C3%B3ndeag" target="_blank"><strong>informacion base</strong></a>
+                    </li>
+                    <li>
+                        <a href="https://sci2s.ugr.es/sites/default/files/files/Teaching/GraduatesCourses/Bioinformatica/Tema%2006%20-%20AGs%20I.pdf" target="_blank"><strong>informacion grafica</strong></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <script src="../js/toggle.js"></script>
 </body>
 </html>
