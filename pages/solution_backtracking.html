@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmo Genético</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+    <h1>Backtracking n reinas</h1>
+    <header></header>
+    <script src = "../js/navbar.js"></script>
+    <br>
+    <form id="ga-form">
+        <label for="nQueens">Cantidad de Reinas:</label>
+        <input type="number" id="nQueens" name="nQueens" min="4" required>
+        <button type="button" onclick="solveNQueens()">Resolver</button>
+    </form>
+
+    <div id="results">
+        <div id="solution"></div>
+        <div id="details"></div>
+    </div>
+
+    <a href="https://github.com/jackrian97/NQueensGA" target="_blank">GitHub del Autor</a>
+
+    <script src="/js/script_backtracking.js" type="module"></script>
+</body>
+</html>
