@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Determina la ruta correcta a navbar.html
-    let navbarPath;
+    let navbarPath;//
     if (window.location.pathname.includes("/pages/")) {
         navbarPath = "../pages/navbar.html";
     } else {

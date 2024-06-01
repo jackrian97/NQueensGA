@@ -1,0 +1,31 @@
+table {
+    width: 100%; /* Opcional: hacer que la tabla ocupe todo el ancho disponible */
+    border-collapse: collapse; /* Fusionar los bordes de las celdas */
+}
+
+caption {
+    font-weight: bold; /* Hacer que el texto de la leyenda sea negrita */
+}
+
+th, td {
+    padding: 10px; /* Agregar un espacio interno uniforme en las celdas */
+    text-align: left; /* Alinear el texto a la izquierda en las celdas */
+}
+
+th {
+    background-color: #f2f2f2; /* Color de fondo para las celdas de encabezado */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo alternado para filas pares */
+}
+
+a {
+    text-decoration: none; /* Quitar la subrayado predeterminado de los enlaces */
+    color: blue; /* Color del texto de los enlaces */
+}
+
+a:hover {
+    text-decoration: underline; /* Subrayado cuando se pasa el ratón sobre el enlace */
+    color: darkblue; /* Color del texto al pasar el ratón sobre el enlace */
+}

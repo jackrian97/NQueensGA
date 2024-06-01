@@ -1,0 +1,36 @@
+nav ul{
+    display: flex; /* Para desplegar las opciones de forma horizontal */
+    list-style: none; /* Para eliminar los bullets */
+    padding: 0; /* Elimina el espacio interno */    
+}
+
+nav li {
+    margin-right: 20px; /* Espaciado entre cada opción */
+}
+
+nav a {
+    text-decoration: none; /* Elimina subrayado en los enlaces */
+    color: #333; /* Color del texto */
+    font-weight: bold; /* Estilo de la fuente en negrita */
+    transition: color 0.3s ease; /* Transición suave para el cambio de color */
+    font-size: 40px;
+}
+
+/* Cambiar color al pasar el ratón sobre las opciones */
+nav a.index:hover {
+    color: yellow;
+}
+nav a.funcion:hover {
+    color: blue;
+}
+nav a.extra:hover {
+    color: red;
+}
+
+nav {
+    background-color: rgb(203, 142, 228);
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    list-style: none;
+    padding: 0;
+}

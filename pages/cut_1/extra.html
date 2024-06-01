@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra</title>
+    <link href= "/css/cut_1/index.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/cut_1/nav.css" rel = "stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+  <header></header>
+  <script src="../../js/cut_1/navbar_aux.js"></script>
+  <br>
+<header>
+    <nav></nav>
+</header>
+
+<main>
+<!-- 17 = <cite>, 18 = <data> 19 = <i>--> 
+    <article>
+      <h2>Libro sobre Virtualización</h2>
+        <p>Tenemos un libro que aborda el tema de la virtualizacion y este se llamada 
+          <cite>VIRTUALIZACION DE SISTEMAS DE INFORMACION CON VMWARE </cite>
+          fecha de publicacion <data value="2021-10-10">10 de octubre de 2021</data>
+        </p>
+      </article>
+    
+      <!-- 20 = <code>  -->
+      <article>
+        <h2>Virtualización en la Nube</h2>
+        <p>una forma de acercarce a la virutalizacion sin descargar proglamas es 
+          mediante una maquina virtual en la nube, para esto se puede usar google cloud-platform, 
+          azure o aws y mediante protoolo ssh establecer comunicacion mediante comando de consola 
+          o el CMD, aqui un ejemplo de como se veria un codigo ssh en consola</p>
+        </p>
+        <code>ssh usuario@servidor.com</code>
+      </article>
+    
+      <!--21 = <details> 22 = label 23 = <input> -->
+      <article>
+        <h2>selecciona tu preferencia</h2>
+        <label for="browser">¿Cuál fue el sistema operativo que te gustaría virtualizar?</label>
+        <input list="browsers" name="browser" id="browser">
+        <datalist id="browsers">
+            <option value="Windows"></option>
+            <option value="Linux"></option>
+            <option value="Mac OS"></option>
+            <option value="IOS"></option>
+            <option value="IOS"></option>
+            <option value="Android"></option>
+        </datalist>
+      </article>
+    
+      <!-- 25 = <dl> 26 = <dt> 27 = <i> 28 = <dd>-->
+      <article>
+        <h2>Definiciones</h2>
+        <dl>
+          <dt>Virtualizacion</dt>
+          <dd>La virtualización es una tecnología que permite crear un entorno virtual a partir de un sistema físico.</dd>
+          <dt>VirtualBox</dt>
+          <dd>VirtualBox es un software de virtualización de código abierto que permite ejecutar varios sistemas operativos en un mismo ordenador.</dd>
+          <dt>VMware</dt>
+          <dd>VMware es una empresa de software de virtualización que ofrece soluciones de virtualización para servidores, escritorios y aplicaciones.</dd>
+        </dl>
+        <p>No condundir la virtualizacion con contenedores <del>virtualizar</del> <ins>contenedores</ins></p>
+        </article>
+    
+      <!--33 = <datail> 34 = <sumary> 35 = <time> 36 = <var>-->
+      <article>
+        <h2>Curiosidad</h2>
+        <details>
+          <summary>Hack???</summary>
+          <p>un dato curioso es que la virtualizacion es muy usado en el mundo de civerseguridad</p>
+        </details>
+      </article>
+    
+      <!--37 = <aside>, 38 = <section>-->
+      <aside>
+        <section>
+          <h2>Tipos de virtualizacion</h2>
+          <p>Existen varios tipos de virtualización, 
+            entre los que destacan la virtualización de hardware, 
+            la virtualización de software y la virtualización de red. 
+            La virtualización de hardware permite ejecutar varios sistemas operativos 
+            en un mismo servidor físico, mientras que la virtualización de software 
+            permite ejecutar varias aplicaciones en un mismo sistema operativo. 
+            La virtualización de red permite crear redes virtuales a partir de una red física, 
+            lo que permite mejorar la seguridad y la eficiencia de las redes informáticas.</p>
+        </section>
+      </aside>
+</main>
+
+<footer>
+    <address>
+    </address>
+</footer>
+
+<script src="/js/cut_1/menu.js"></script>
+<script src = "/js/cut_1/footer.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+body {
+    background-image: url(https://img.freepik.com/foto-gratis/cubos-blancos-fondo-3d_23-2150505295.jpg?w=826&t=st=1710605197~exp=1710605797~hmac=63aa90483734ec3b681da69f3fa7fb2c1e901ebb8546d5494935ddb261a9db6a);
+    background-repeat: repeat;
+}
+
+#music{
+    width: 100%;
+}
+
+.texto-music{
+    background-color: rgb(26, 107, 179); 
+    color: white;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+b.lofi {
+    color: rgb(56, 177, 116);
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+body p {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    text-align: justify;
+    margin-top: 0px;
+}
+
+h3 {
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+blockquote {
+    background-color: #f9f9f9;
+    border-left: 5px solid #ccc;
+    padding: 0.5em 1em;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+#virtual{
+    text-decoration: yellowgreen underline;
+}
+
+h2 {
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: left;
+}
+
+body div.image {
+    display: flex;
+    justify-content: center;
+
+}
+
+code {
+    font-family: monospace; /* Cambia la fuente a una fuente de ancho fijo para código */
+    background-color: #f2f2f2; /* Color de fondo */
+    padding: 4px; /* Añade espacio interno para que el texto no quede pegado al borde */
+    border-radius: 10px; /* Añade bordes redondeados */
+    border: 1px solid #ccc; /* Añade un borde */
+}
